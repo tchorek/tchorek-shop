@@ -1,4 +1,24 @@
 import Link from 'next/link';
+import { Navigation, NavList } from './NavList';
+
+const navigation: Navigation[] = [
+  {
+    name: 'Start',
+    href: '/',
+  },
+  {
+    name: 'About',
+    href: '/about',
+  },
+  {
+    name: 'Products CSR',
+    href: '/products-csr',
+  },
+  {
+    name: 'Products SSG',
+    href: '/products-ssg',
+  },
+];
 
 export const Header = () => {
   return (
@@ -26,22 +46,7 @@ export const Header = () => {
             <h2 className="sr-only" id="header-navigation">
               Header navigation
             </h2>
-            <ul className="flex items-center gap-6 text-sm">
-              <li>
-                <Link href="/">
-                  <a className="transition text-white hover:text-white/75">
-                    Start
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/about">
-                  <a className="transition text-white hover:text-white/75">
-                    About
-                  </a>
-                </Link>
-              </li>
-            </ul>
+            <NavList navigation={navigation} />
           </nav>
         </div>
       </div>

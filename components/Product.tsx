@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Rating } from './Rating';
 
@@ -17,10 +18,14 @@ interface ProductProps {
 export const ProductDetails = ({ data }: ProductProps) => {
   return (
     <div className="relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm">
-      <img
+      <Image
         alt={data.thumbnailAlt}
         src={data.thumbnailUrl}
         className="h-56 w-full object-cover"
+        layout="responsive"
+        width={16}
+        height={9}
+        objectFit={'contain'}
       />
       <div className="p-6">
         <h5 className="text-xl font-bold">{data.title}</h5>
@@ -44,10 +49,14 @@ export const ProductListItem = ({ data }: ProductListItemProps) => {
   return (
     <Link href={`/products/${data.id}`}>
       <a className="relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm">
-        <img
+        <Image
           alt={data.thumbnailAlt}
           src={data.thumbnailUrl}
           className="h-56 w-full object-cover"
+          layout="responsive"
+          width={16}
+          height={9}
+          objectFit={'contain'}
         />
         <div className="p-6">
           <h5 className="text-xl font-bold">{data.title}</h5>
