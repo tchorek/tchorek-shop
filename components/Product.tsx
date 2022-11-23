@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Rating } from './Rating';
+import { NextSeo } from 'next-seo';
+import { Markdown } from './Markdown';
+import { MarkdownResult } from '../utils';
 
 interface ProductDetails {
   id: number;
@@ -8,6 +11,7 @@ interface ProductDetails {
   thumbnailUrl: string;
   thumbnailAlt: string;
   description: string;
+  longDescription: MarkdownResult;
   raiting: number;
 }
 
@@ -17,22 +21,45 @@ interface ProductProps {
 
 export const ProductDetails = ({ data }: ProductProps) => {
   return (
-    <div className="relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm">
-      <Image
-        alt={data.thumbnailAlt}
-        src={data.thumbnailUrl}
-        className="h-56 w-full object-cover"
-        layout="responsive"
-        width={16}
-        height={9}
-        objectFit={'contain'}
+    <>
+      <NextSeo
+        title={data.title}
+        description={data.description}
+        canonical={`https://naszsklep-api.vercel.app/api/products/${data.id}`}
+        openGraph={{
+          url: `https://naszsklep-api.vercel.app/api/products/${data.id}`,
+          title: data.title,
+          description: data.description,
+          images: [
+            {
+              url: data.thumbnailUrl,
+              alt: data.thumbnailAlt,
+              type: 'image/jpeg',
+            },
+          ],
+          siteName: 'Tchorek Shop',
+        }}
       />
-      <div className="p-6">
-        <h5 className="text-xl font-bold">{data.title}</h5>
-        <p className="mt-2 text-sm text-gray-500">{data.description}</p>
-        <Rating raiting={data.raiting} />
+      <div className="relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm">
+        <Image
+          alt={data.thumbnailAlt}
+          src={data.thumbnailUrl}
+          className="h-56 w-full object-cover"
+          layout="responsive"
+          width={16}
+          height={9}
+          objectFit={'contain'}
+        />
+        <div className="p-6">
+          <h5 className="text-xl font-bold">{data.title}</h5>
+          <p className="mt-2 text-sm text-gray-500">{data.description}</p>
+          <article className="prose lg:prose-xl">
+            <Markdown>{data.longDescription}</Markdown>
+          </article>
+          <Rating raiting={data.raiting} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
