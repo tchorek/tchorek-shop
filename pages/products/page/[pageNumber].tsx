@@ -1,8 +1,6 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import { Main } from '../../../components/Main';
-import { Header } from '../../../components/Header';
-import { Footer } from '../../../components/Footer';
 import { Pagination } from '../../../components/Pagination';
 import { ProductListItem } from '../../../components/Product';
 
@@ -19,32 +17,28 @@ const ProductsPage = ({
   }
 
   return (
-    <div>
-      <Header />
-      <Main>
-        <p className="mx-16 mt-16 text-xl font-bold text-gray-500">
-          {productsQuantity} products
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => {
-            return (
-              <ProductListItem
-                key={product.id}
-                data={{
-                  id: product.id,
-                  title: product.title,
-                  thumbnailUrl: product.image,
-                  thumbnailAlt: product.title,
-                  raiting: product.rating.rate,
-                }}
-              />
-            );
-          })}
-        </div>
-        <Pagination activePage={pageNumber} length={pagesQuantity} />
-      </Main>
-      <Footer />
-    </div>
+    <Main>
+      <p className="mx-16 mt-16 text-xl font-bold text-gray-500">
+        {productsQuantity} products
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {products.map((product) => {
+          return (
+            <ProductListItem
+              key={product.id}
+              data={{
+                id: product.id,
+                title: product.title,
+                thumbnailUrl: product.image,
+                thumbnailAlt: product.title,
+                raiting: product.rating.rate,
+              }}
+            />
+          );
+        })}
+      </div>
+      <Pagination activePage={pageNumber} length={pagesQuantity} />
+    </Main>
   );
 };
 

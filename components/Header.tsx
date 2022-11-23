@@ -16,7 +16,7 @@ const navigation: Navigation[] = [
   },
   {
     name: 'Products SSG',
-    href: '/products-ssg',
+    href: '/products',
   },
 ];
 

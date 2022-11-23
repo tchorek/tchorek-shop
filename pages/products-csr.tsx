@@ -1,6 +1,4 @@
 import { useQuery } from 'react-query';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
 import { Main } from '../components/Main';
 import { ProductListItem } from '../components/Product';
 import { Pagination } from '../components/Pagination';
@@ -45,29 +43,25 @@ const ProductsCSRPage = () => {
   }
 
   return (
-    <div>
-      <Header />
-      <Main>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.map((product) => {
-            return (
-              <ProductListItem
-                key={product.id}
-                data={{
-                  id: product.id,
-                  title: product.title,
-                  thumbnailUrl: product.image,
-                  thumbnailAlt: product.title,
-                  raiting: product.rating.rate,
-                }}
-              />
-            );
-          })}
-        </div>
-        <Pagination activePage={page} setPage={setPage} length={10} />
-      </Main>
-      <Footer />
-    </div>
+    <Main>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {data.map((product) => {
+          return (
+            <ProductListItem
+              key={product.id}
+              data={{
+                id: product.id,
+                title: product.title,
+                thumbnailUrl: product.image,
+                thumbnailAlt: product.title,
+                raiting: product.rating.rate,
+              }}
+            />
+          );
+        })}
+      </div>
+      <Pagination activePage={page} setPage={setPage} length={10} />
+    </Main>
   );
 };
 
