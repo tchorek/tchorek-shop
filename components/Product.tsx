@@ -4,6 +4,7 @@ import { Rating } from './Rating';
 import { NextSeo } from 'next-seo';
 import { Markdown } from './Markdown';
 import { MarkdownResult } from '../utils';
+import { useCartState } from './Cart/CartContext';
 
 interface ProductDetails {
   id: number;
@@ -73,23 +74,40 @@ interface ProductListItemProps {
 }
 
 export const ProductListItem = ({ data }: ProductListItemProps) => {
+  const cartState = useCartState();
+
   return (
-    <Link href={`/products/${data.id}`}>
-      <a className="relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm">
-        <Image
-          alt={data.thumbnailAlt}
-          src={data.thumbnailUrl}
-          className="h-56 w-full object-cover"
-          layout="responsive"
-          width={16}
-          height={9}
-          objectFit={'contain'}
-        />
-        <div className="p-6">
-          <h5 className="text-xl font-bold">{data.title}</h5>
-          <Rating raiting={data.raiting} />
-        </div>
-      </a>
-    </Link>
+    <div className="relative block overflow-hidden rounded-lg border border-gray-100 shadow-sm">
+      <Link href={`/products/${data.id}`}>
+        <a>
+          <Image
+            alt={data.thumbnailAlt}
+            src={data.thumbnailUrl}
+            className="h-56 w-full object-cover"
+            layout="responsive"
+            width={16}
+            height={9}
+            objectFit={'contain'}
+          />
+          <div className="p-6">
+            <h5 className="text-xl font-bold">{data.title}</h5>
+            <Rating raiting={data.raiting} />
+          </div>
+        </a>
+      </Link>
+      <button
+        onClick={() =>
+          cartState.addItemToCart({
+            id: data.id,
+            price: 21.37,
+            title: data.title,
+            count: 1,
+          })
+        }
+        className="ml-3 mb-3 block rounded bg-gray-900 px-5 py-3 text-xs font-medium text-teal-300 hover:bg-gray-700"
+      >
+        Dodaj do koszyka
+      </button>
+    </div>
   );
 };
