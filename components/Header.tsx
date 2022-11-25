@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CartBar } from './Cart/CartBat';
 import { Navigation, NavList } from './NavList';
 
 const navigation: Navigation[] = [
@@ -49,6 +50,8 @@ export const Header = () => {
             <NavList navigation={navigation} />
           </nav>
         </div>
+
+        <CartBar />
       </div>
     </header>
   );
