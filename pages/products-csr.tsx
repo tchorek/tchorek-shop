@@ -5,7 +5,7 @@ import { Pagination } from '../components/Pagination';
 import { useState } from 'react';
 
 export interface StoreApiResponse {
-  id: number;
+  id: string;
   title: string;
   price: number;
   description: string;
