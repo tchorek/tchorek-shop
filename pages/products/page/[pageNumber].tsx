@@ -45,7 +45,7 @@ const ProductsPage = ({
 export default ProductsPage;
 
 export interface StoreApiResponse {
-  id: number;
+  id: string;
   title: string;
   price: number;
   description: string;
