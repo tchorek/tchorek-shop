@@ -8,7 +8,7 @@ import {
 import { getCartItemsFromStorage, setCartItemsInStorage } from './CartModel';
 
 export interface CartItem {
-  readonly id: number;
+  readonly id: string;
   readonly price: number;
   readonly title: string;
   readonly count: number;
