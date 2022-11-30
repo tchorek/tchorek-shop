@@ -19,6 +19,10 @@ const navigation: Navigation[] = [
     name: 'Products SSG',
     href: '/products',
   },
+  {
+    name: 'Checkout',
+    href: '/checkout',
+  },
 ];
 
 export const Header = () => {
