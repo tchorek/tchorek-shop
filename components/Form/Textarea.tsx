@@ -1,13 +1,12 @@
 import { useFormContext } from 'react-hook-form';
 
-interface InputProps {
+interface TextareaProps {
   name: string;
   label: string;
   sr?: boolean;
-  rb?: string;
 }
 
-export const Input = ({ name, label, sr, rb }: InputProps) => {
+export const Textarea = ({ name, label, sr }: TextareaProps) => {
   const {
     register,
     formState: { errors },
@@ -23,17 +22,12 @@ export const Input = ({ name, label, sr, rb }: InputProps) => {
         {label}
       </label>
 
-      <input
-        className={
-          sr
-            ? `relative w-full border-gray-200 focus:z-10 sm:text-sm ${rb}`
-            : 'w-full mt-1 border-gray-200 rounded-md shadow-sm sm:text-sm'
-        }
-        type="text"
+      <textarea
+        className={sr ? 'w-full border-gray-200 shadow-sm sm:text-sm' : ''}
         placeholder={sr ? label : ''}
         id={name}
         {...register(name)}
-      />
+      ></textarea>
       <span role="alert" className="text-red-500 text-sm">
         {error?.message as string}
       </span>
