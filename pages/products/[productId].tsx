@@ -12,6 +12,7 @@ import {
   GetProductsSlugsDocument,
   GetProductsSlugsQuery,
 } from '../../generated/graphql';
+import { ReviewtForm } from '../../components/ReviewForm';
 
 const ProductIdPage = ({
   data,
@@ -35,6 +36,7 @@ const ProductIdPage = ({
             longDescription: data.longDescription,
           }}
         />
+        <ReviewtForm slug={data.slug} />
       </div>
     </Main>
   );
